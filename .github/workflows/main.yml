@@ -16,8 +16,8 @@ jobs:
         script:
           cd /var/www/testnode/server
           git pull
-          git status
           . $HOME/.nvm/nvm.sh
           nvm use
-          nvm ci
-          npm run build
+          npm install --omit=dev
+          pm2 delete all
+          pm2 start ./src/main.js
