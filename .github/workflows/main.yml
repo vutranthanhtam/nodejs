@@ -1,0 +1,23 @@
+name: Test
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: kết nối ssh linux -> và pull
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        pass: ${{ secrets.PASS }}
+        port: 22
+        script:
+          cd /var/www/testnode/server
+          git pull
+          git status
+          . $HOME/.nvm/nvm.sh
+          nvm use
+          nvm ci
+          npm run build
