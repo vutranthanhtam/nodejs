@@ -30,4 +30,4 @@ jobs:
           nvm use
           npm install --omit=dev
           pm2 delete all
-          pm2 start ./src.main.js
+          pm2 start ./src/main.js
