@@ -1,10 +1,15 @@
 import express from "express";
 const app = express();
 
+import dotEnv from "dotenv";
+dotEnv.config();
+
 import { readFileSync, writeFileSync } from 'fs'
 
 import bodyParser from "body-parser";
 app.use(bodyParser.json());
+
+
 
 app.post("/student" , (req, res) => {
     try{
@@ -129,6 +134,6 @@ app.use("/", (req, res) => {
     res.send("Hello World")
 })
 
-app.listen(3000, () => {
-    console.log("Server on at: http://127.0.0.1:3000");
+app.listen(process.env.PORT, () => {
+    console.log(`Server on at: ${process.env.HOST}:${process.env.PORT}`);
 })
