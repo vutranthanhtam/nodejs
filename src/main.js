@@ -127,11 +127,11 @@ app.get("/student" , (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.send("Hello cac ban")
+    res.send("Hello ! 111")
 })
 
 app.use("/", (req, res) => {
-    res.send("Hello !")
+    res.send("Hello ! 222")
 })
 
 app.listen(process.env.PORT, () => {
