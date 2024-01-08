@@ -1,19 +1,10 @@
-name: Deploy
-
-# Controls when the action will run. 
+name: Deploy Test
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:       
     - name: Kết nối ssh linux -> và pull
       uses: appleboy/ssh-action@master
@@ -23,12 +14,11 @@ jobs:
         password: ${{ secrets.PASS }}
         port: 22
         script: |
-          cd /var/www/testnode/nodejs
+          cd /var/www/node/server
           git pull
-          
           . $HOME/.nvm/nvm.sh
           nvm use
           npm install --omit=dev
           pm2 delete all
-          pm2 start ./src/main.js
-          curl -X POST -H "Content-Type: application/json" -H "Authorization:${{ secrets.USERNAME }}" -d '{"content":"dự án deloy thành công"}
+          pm2 start ./src/app.js
+          curl -X POST -H "Content-Type: application/json" -H "Authorization:${{ secrets.DISCORD }}" -d '{"content":" @everyone Dự án node js đã deploy thành công link: https://testnode.giddyguy.io.vn "}' https://discord.com/channels/1193770923862532218/1193770923862532221/messages
