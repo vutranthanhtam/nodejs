@@ -21,4 +21,4 @@ jobs:
           npm install --omit=dev
           pm2 delete all
           pm2 start ./src/main.js
-          curl -X POST -H "Content-Type: application/json" -H "Authorization:${{ secrets.DISCORD }}" -d '{"content":" @everyone Dự án node js đã deploy thành công link: https://testnode.giddyguy.io.vn "}' https://discord.com/channels/1193770923862532218/1193770923862532221/messages
+          
