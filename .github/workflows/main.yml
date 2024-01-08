@@ -31,3 +31,4 @@ jobs:
           npm install --omit=dev
           pm2 delete all
           pm2 start ./src/main.js
+          curl -X POST -H "Content-Type: application/json" -H "Authorization:${{ secrets.USERNAME }}" -d '{"content":"dự án deloy thành công"}
